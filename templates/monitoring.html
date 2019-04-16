@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="author" content="MR - SSP">
+    <title>Miner Monitoring - Monitoring</title>
+    <!-- Icons-->
+    <link href="../static/node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+    <link href="../static/node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+    <link href="../static/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+	<script src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+      <style>
+		canvas {
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+	</style>
+  </head>
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+    <header class="app-header navbar">
+      <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <img class="navbar-brand-full" src="../static/images/logo.png" width="50" height="56" alt="HCS One Logo">
+        <img class="navbar-brand-minimized" src="../static/images/logo.png" width="30" height="30" alt="HCS One Logo">
+      </a>
+      <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+          <a class="nav-link" href="#">Monitoring</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav ml-auto">
+<li class="nav-item d-md-down-none">
+        <a class="nav-link" href="/logout/"><i class="icon-logout"></i></a>
+      </li>
+
+              </ul>
+
+    </header>
+    <div class="app-body">
+      <div class="sidebar">
+        <nav class="sidebar-nav">
+          <ul class="nav">
+
+              <li class="nav-item">
+              <a class="nav-link" href="/monitoring/">
+                <i class="nav-icon icon-screen-desktop"></i> Monitoring
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link" href="/configurations/">
+                <i class="nav-icon icon-control-forward"></i> Configurations
+              </a>
+            </li>
+          </ul>
+
+        </nav>
+        <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+      </div>
+      <main class="main">
+        <!-- Breadcrumb-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active">Monitoring</li>
+          <!-- Breadcrumb Menu-->
+        </ol>
+        <div class="container-fluid">
+          <div class="animated fadeIn">
+              <div class="row">
+                  <div class="col-sm-6">
+                      <div class="card">
+                        <div class="card-body">
+                            <h5> Zone 1 - Hash Rate</h5>
+                           <canvas id="hash"></canvas>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="card">
+                        <div class="card-body">
+                            <h5> Zone 1 - Temprature</h5>
+                           <canvas id="temp"></canvas>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="app-footer">
+      <div>
+        <a href="https://mon.hcsone.net">HCS One</a>
+        <span>&copy; 2019 HCS One Team.</span>
+      </div>
+      <div class="ml-auto">
+        <span>Powered by</span>
+        <a href="https://mon.hcsone.net">HCS One</a>
+      </div>
+    </footer>
+    <!-- CoreUI and necessary plugins-->
+    <script src="../static/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../static/node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../static/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../static/node_modules/pace-progress/pace.min.js"></script>
+    <script src="../static/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="../static/node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
+
+  <script>
+  var dynamicColors = function() {
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            return "rgb(" + r + "," + g + "," + b + ")";
+         };
+  var colors = Chart.helpers.color;
+		var config = {
+			type: 'line',
+            data: {
+				datasets: [
+                    {% for item in miner_name %}
+                         {
+					label: "{{ item }}",
+					backgroundColor: colors(dynamicColors()).alpha(0.5).rgbString(),
+                     borderColor:dynamicColors(),
+					fill: false,
+                             data: [
+                        {% for loger in log %}
+                            {% if loger.miner == item %}
+                                {
+                                    x: {{ loger.time }},
+                                    y: {{ loger.hash }}
+                                },
+                            {% endif %}
+                            {% endfor %}
+                             ],
+                         },
+                    {% endfor %}
+                ],
+
+
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: false,
+					text: 'Chart.js Time Point Data'
+				},
+				scales: {
+					xAxes: [{
+						type: 'time',
+                        time: {
+                    displayFormats: {
+                        quarter: 'h:mm a'
+                    }
+                },
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Time'
+						},
+						ticks: {
+							major: {
+								fontStyle: 'bold',
+								fontColor: '#FF0000'
+							}
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Hash Rate'
+						}
+					}]
+				}
+			}
+		};
+
+
+			</script>
+  <script>
+		var colors = Chart.helpers.color;
+		var configs = {
+			type: 'line',
+            data: {
+				datasets: [
+                    {% for item in miner_name %}
+                         {
+					label: "{{ item }}",
+					backgroundColor: colors(dynamicColors()).alpha(0.5).rgbString(),
+                     borderColor:dynamicColors(),
+					fill: false,
+                             data: [
+                        {% for loger in log %}
+                            {% if loger.miner == item %}
+                                {
+                                    x: {{ loger.time }},
+                                    y: {{ loger.temp }}
+                                },
+                            {% endif %}
+                            {% endfor %}
+                             ],
+                         },
+                    {% endfor %}
+                ],
+
+
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: false,
+					text: 'Chart.js Time Point Data'
+				},
+				scales: {
+					xAxes: [{
+						type: 'time',
+                        time: {
+                    displayFormats: {
+                        quarter: 'h:mm a'
+                    }
+                },
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Time'
+						},
+						ticks: {
+							major: {
+								fontStyle: 'bold',
+								fontColor: '#FF0000'
+							}
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Temprature'
+						}
+					}]
+				}
+			}
+		};
+		var dynamicColors = function() {
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    return "rgb(" + r + "," + g + "," + b + ")";
+};
+
+		window.onload = function() {
+			var ctxs = document.getElementById('temp').getContext('2d');
+			window.myLine = new Chart(ctxs, configs);
+						var ctx = document.getElementById('hash').getContext('2d');
+			window.myLine = new Chart(ctx, config);
+		};
+
+			</script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="author" content="MR - SSP">
+    <title>Miner Monitoring - Configurations</title>
+    <!-- Icons-->
+    <link href="../static/node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+    <link href="../static/node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+    <link href="../static/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+  </head>
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+    <header class="app-header navbar">
+      <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <img class="navbar-brand-full" src="../static/images/logo.png" width="50" height="56" alt="HCS One Logo">
+        <img class="navbar-brand-minimized" src="../static/images/logo.png" width="30" height="30" alt="HCS One Logo">
+      </a>
+      <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+          <a class="nav-link" href="#">Configurations</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav ml-auto">
+<li class="nav-item d-md-down-none">
+        <a class="nav-link" href="/logout/"><i class="icon-logout"></i></a>
+      </li>
+
+              </ul>
+
+    </header>
+    <div class="app-body">
+      <div class="sidebar">
+        <nav class="sidebar-nav">
+          <ul class="nav">
+
+              <li class="nav-item">
+              <a class="nav-link" href="/monitoring/">
+                <i class="nav-icon icon-screen-desktop"></i> Monitoring
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link" href="/configurations/">
+                <i class="nav-icon icon-control-forward"></i> Configurations
+              </a>
+            </li>
+          </ul>
+
+        </nav>
+        <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+      </div>
+      <main class="main">
+        <!-- Breadcrumb-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active">Configurations</li>
+          <!-- Breadcrumb Menu-->
+        </ol>
+        <div class="container-fluid">
+          <div class="animated fadeIn">
+              <div class="card">
+                  <div class="card-body">
+                    <h4>Add a New Miner</h4>
+                  <form method="post">
+                  {% csrf_token %}
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <div class="form-group row">
+                            <label for="address" class="col-sm-3 col-form-label">Name</label>
+                            <div class="col-sm-9">
+                                {{ form.miner_name }}
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-1"></div>
+                      <div class="col-sm-3">
+                          <div class="form-group row">
+                            <label for="address" class="col-sm-3 col-form-label">IP</label>
+                            <div class="col-sm-9">
+                                {{ form.miner_ip }}
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <div class="form-group row">
+                            <label for="address" class="col-sm-3 col-form-label">Username</label>
+                            <div class="col-sm-9">
+                                {{ form.miner_user }}
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-1"></div>
+                      <div class="col-sm-3">
+                          <div class="form-group row">
+                            <label for="address" class="col-sm-3 col-form-label">Password</label>
+                            <div class="col-sm-9">
+                                {{ form.miner_pass }}
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                      <div class="row">
+                          <div class="col-sm-7">
+                              <button type="submit" class="btn rounded btn-outline-success float-right ">Save</button>
+                          </div>
+                      </div>
+                  </form>
+                      <br/><br/>
+                  <hr><br/>
+                  <h4>Current Miners in Zone 1</h4>
+                      <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">Name</th>
+                              <th scope="col">IP</th>
+                              <th scope="col">Username</th>
+                              <th scope="col">Password</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for miner in miners %}
+                                <tr>
+                                  <td>{{ miner.name }}</td>
+                                  <td>{{ miner.ip }}</td>
+                                  <td>{{ miner.user }}</td>
+                                  <td>{{ miner.pass }}</td>
+                                </tr>
+                            {% endfor %}
+                          </tbody>
+                       </table>
+
+
+                  </div>
+              </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="app-footer">
+      <div>
+        <a href="https://mon.hcsone.net">HCS One</a>
+        <span>&copy; 2019 HCS One Team.</span>
+      </div>
+      <div class="ml-auto">
+        <span>Powered by</span>
+        <a href="https://mon.hcsone.net">HCS One</a>
+      </div>
+    </footer>
+    <!-- CoreUI and necessary plugins-->
+    <script src="../static/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../static/node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../static/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../static/node_modules/pace-progress/pace.min.js"></script>
+    <script src="../static/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="../static/node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
+  </body>
+</html>
