@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1195d908-c2a6-46aa-9930-0e974881c769" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/monitoring.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/monitoring.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,11 +38,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/monitoring.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="235" column="18" selection-start-line="235" selection-start-column="18" selection-end-line="235" selection-end-column="18" />
+            <state relative-caret-position="219">
+              <caret line="192" selection-start-line="192" selection-end-line="192" />
             </state>
           </provider>
         </entry>
@@ -55,7 +56,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="588">
@@ -113,9 +114,9 @@
         <option value="$PROJECT_DIR$/templates/configurations.html" />
         <option value="$PROJECT_DIR$/login/views.py" />
         <option value="$PROJECT_DIR$/monitoring/views.py" />
-        <option value="$PROJECT_DIR$/templates/monitoring.html" />
         <option value="$PROJECT_DIR$/driver/database.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/templates/monitoring.html" />
       </list>
     </option>
   </component>
@@ -245,7 +246,7 @@
       <workItem from="1555226444142" duration="6492000" />
       <workItem from="1555347104865" duration="19971000" />
       <workItem from="1555381787284" duration="658000" />
-      <workItem from="1555397363119" duration="11516000" />
+      <workItem from="1555397363119" duration="12578000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1555421406041</created>
@@ -258,12 +259,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68452000" />
+    <option name="totallyTimeSpent" value="69514000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="-4" width="1877" height="1084" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26979792" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26979792" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -277,7 +278,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="manage.py@monitoring_panel" order="10" sideWeight="0.49972692" weight="0.32916668" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49918076" visible="true" weight="0.32916668" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49918076" visible="true" weight="0.32916668" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5008192" side_tool="true" visible="true" weight="0.32916668" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.3298647" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -411,13 +412,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/monitoring.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="235" column="18" selection-start-line="235" selection-start-column="18" selection-end-line="235" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/driver/database.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
@@ -429,6 +423,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
           <caret line="352" selection-start-line="352" selection-end-line="352" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/monitoring.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="192" selection-start-line="192" selection-end-line="192" />
         </state>
       </provider>
     </entry>
